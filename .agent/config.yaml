@@ -1,0 +1,69 @@
+# Per-repo configuration for the Jira dev agent.
+# Everything stack-specific lives here; the agent code stays generic.
+
+project:
+  name: store-inventory
+  base_branch: main
+
+jira:
+  # Leave JIRA_BASE_URL unset in agent/.env to use the mock tickets below.
+  mock_dir: .agent/mock-jira
+  type_map:
+    bug: bug
+    improvement: enhancement
+    enhancement: enhancement
+    task: enhancement
+    story: story
+
+conventions: .agent/CONVENTIONS.md
+
+workspaces:
+  - name: api
+    path: api
+    extends: node-api
+    start: node server.js
+    healthcheck: http://localhost:4001/health
+    evidence:
+      type: api
+      base_url: http://localhost:4001
+      env:
+        PORT: "4001"
+        DB_FILE: api.evidence-db.json
+      prepare: cp db.json api.evidence-db.json
+      samples:
+        - { name: list-products, method: GET, path: /products, expect_status: 200 }
+
+  - name: web
+    path: web
+    extends: react-vite
+    start: npx vite --port 4173 --strictPort
+    healthcheck: http://localhost:4173
+    evidence:
+      type: ui
+      base_url: http://localhost:4173
+      env:
+        API_URL: http://localhost:4001
+      routes: ["/"]
+
+guardrails:
+  protected_paths:
+    - ".env*"
+    - ".agent/**"
+    - ".github/**"
+    - "**/package-lock.json"
+    - "api/db.json"
+  always_allowed:            # files the agent may touch without listing them in the plan
+    - "**/tests/**"
+    - "**/*.test.*"
+  max_files_changed: 12
+  max_lines_changed: 600
+  forbidden_patterns:        # regexes checked against added lines only
+    - "\\b(it|describe|test)\\.only\\("
+    - "\\bdebugger;"
+  dependency_audit: warn     # off | warn | block
+
+agent:
+  max_turns_per_stage: 40
+  max_review_rounds: 2
+  max_guardrail_fixes: 2
+  max_tokens_per_run: 1500000

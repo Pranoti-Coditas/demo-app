@@ -1,0 +1,9 @@
+node_modules
+dist/
+reports/
+coverage/
+.agent/runs/
+.agent/worktrees/
+testing-evidence/
+*.evidence-db.json
+.env

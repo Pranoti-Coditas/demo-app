@@ -1,0 +1,10 @@
+{
+  "key": "DEMO-4",
+  "fields": {
+    "issuetype": { "name": "Improvement" },
+    "priority": { "name": "Low" },
+    "summary": "Make the products page better",
+    "description": "The products page should be better and faster. Users have complained.",
+    "labels": []
+  }
+}

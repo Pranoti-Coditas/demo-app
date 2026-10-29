@@ -1,0 +1,10 @@
+{
+  "key": "DEMO-3",
+  "fields": {
+    "issuetype": { "name": "Story" },
+    "priority": { "name": "Medium" },
+    "summary": "As a store manager I want to see which products are running low",
+    "description": "As a store manager I want low-stock products highlighted so that I can reorder them before they run out.\n\nAcceptance criteria:\n- A product is low on stock when stock is below its reorder level.\n- Products get an optional numeric field reorderLevel; when it is missing, the default is 5.\n- The API validates reorderLevel as a non-negative integer when present.\n- Low-stock rows show a \"Low stock\" badge next to the stock number.\n- The page header shows how many products are low on stock, e.g. \"2 low on stock\".\n- Tests cover the API validation and the UI badge and count.",
+    "labels": ["api", "web"]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "key": "DEMO-2",
+  "fields": {
+    "issuetype": { "name": "Improvement" },
+    "priority": { "name": "Medium" },
+    "summary": "Search products by name on the inventory page",
+    "description": "Staff scroll through the whole table to find an item.\n\nAcceptance criteria:\n- A search box above the products table filters rows by name as the user types.\n- Matching is case-insensitive and matches anywhere in the name.\n- When nothing matches, show \"No products match \\\"<term>\\\"\".\n- Filtering happens in the browser; no API changes.\n- Tests cover matching, case-insensitivity and the empty state.",
+    "labels": ["web"]
+  }
+}

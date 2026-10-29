@@ -1,0 +1,10 @@
+{
+  "key": "DEMO-1",
+  "fields": {
+    "issuetype": { "name": "Bug" },
+    "priority": { "name": "High" },
+    "summary": "API accepts products with negative stock",
+    "description": "Steps to reproduce:\n1. POST /products with {\"name\": \"Test\", \"price\": 100, \"stock\": -5}\n2. The API returns 201 and saves the product.\n\nExpected: the API rejects the request with 400.\n\nAcceptance criteria:\n- POST, PUT and PATCH reject a negative stock value with HTTP 400.\n- The error message is \"stock cannot be negative\".\n- Stock of 0 is still allowed.\n- A regression test covers the negative case and the zero case.",
+    "labels": ["api", "validation"]
+  }
+}
