@@ -7,6 +7,7 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const lowStockCount = products.filter((product) => product.stock < (product.reorderLevel ?? 5)).length;
 
   async function load() {
     try {
@@ -38,6 +39,7 @@ export default function App() {
       <header className="page-header">
         <h1>Store inventory</h1>
         <p className="muted">{products.length} products on the shelf</p>
+        <p className="muted">{lowStockCount} low on stock</p>
       </header>
 
       {error && <p role="alert" className="error">{error}</p>}

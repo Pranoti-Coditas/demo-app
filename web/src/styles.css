@@ -39,5 +39,7 @@ table { width: 100%; border-collapse: collapse; }
 th, td { text-align: left; padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--line); }
 th { font-size: 0.8125rem; color: var(--muted); font-weight: 600; }
 .num { text-align: right; font-variant-numeric: tabular-nums; }
+.stock-cell { display: inline-flex; align-items: center; justify-content: flex-end; gap: 0.5rem; }
+.badge { display: inline-block; padding: 0.125rem 0.5rem; border-radius: 999px; background: #fef3c7; color: #92400e; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
 .actions { text-align: right; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }

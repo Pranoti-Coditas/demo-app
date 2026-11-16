@@ -18,19 +18,28 @@ export default function ProductTable({ products, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {products.map((p) => (
-            <tr key={p.id}>
-              <td>{p.name}</td>
-              <td>{p.category}</td>
-              <td className="num">{formatPrice(p.price)}</td>
-              <td className="num">{p.stock}</td>
-              <td className="actions">
-                <button type="button" className="link-button" onClick={() => onDelete(p.id)}>
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+          {products.map((p) => {
+            const isLowStock = p.stock < (p.reorderLevel ?? 5);
+
+            return (
+              <tr key={p.id}>
+                <td>{p.name}</td>
+                <td>{p.category}</td>
+                <td className="num">{formatPrice(p.price)}</td>
+                <td className="num">
+                  <span className="stock-cell">
+                    <span>{p.stock}</span>
+                    {isLowStock && <span className="badge">Low stock</span>}
+                  </span>
+                </td>
+                <td className="actions">
+                  <button type="button" className="link-button" onClick={() => onDelete(p.id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

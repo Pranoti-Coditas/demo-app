@@ -29,6 +29,12 @@ export function validateProduct(req, res, next) {
     }
   }
 
+  if (body.reorderLevel !== undefined) {
+    if (!Number.isInteger(body.reorderLevel) || body.reorderLevel < 0) {
+      errors.push('reorderlevel must be a non-negative integer');
+    }
+  }
+
   if (errors.length > 0) {
     return res.status(400).json({ errors });
   }
