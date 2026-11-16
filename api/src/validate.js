@@ -26,6 +26,8 @@ export function validateProduct(req, res, next) {
   if (!partial || body.stock !== undefined) {
     if (!Number.isInteger(body.stock)) {
       errors.push('stock must be an integer');
+    } else if (body.stock < 0) {
+      errors.push('stock cannot be negative');
     }
   }
 

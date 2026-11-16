@@ -37,6 +37,36 @@ describe('products API', () => {
     expect(res.status).toBe(400);
   });
 
+  it('rejects negative stock on POST, PUT, and PATCH', async () => {
+    const postRes = await request(app)
+      .post('/products')
+      .send({ name: 'Test', category: 'Tools', price: 100, stock: -5 });
+
+    expect(postRes.status).toBe(400);
+    expect(postRes.body).toEqual({ errors: ['stock cannot be negative'] });
+
+    const putRes = await request(app)
+      .put('/products/1')
+      .send({ id: 1, name: 'Claw hammer', category: 'Tools', price: 549, stock: -1 });
+
+    expect(putRes.status).toBe(400);
+    expect(putRes.body).toEqual({ errors: ['stock cannot be negative'] });
+
+    const patchRes = await request(app).patch('/products/1').send({ stock: -1 });
+
+    expect(patchRes.status).toBe(400);
+    expect(patchRes.body).toEqual({ errors: ['stock cannot be negative'] });
+  });
+
+  it('allows stock of 0 on create', async () => {
+    const res = await request(app)
+      .post('/products')
+      .send({ name: 'Test', category: 'Tools', price: 100, stock: 0 });
+
+    expect(res.status).toBe(201);
+    expect(res.body.stock).toBe(0);
+  });
+
   it('allows partial updates with PATCH', async () => {
     const res = await request(app).patch('/products/1').send({ stock: 20 });
     expect(res.status).toBe(200);
