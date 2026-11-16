@@ -1,9 +1,45 @@
 {
   "products": [
-    { "id": 1, "name": "Claw hammer", "category": "Tools", "price": 549, "stock": 18 },
-    { "id": 2, "name": "Cordless drill", "category": "Power tools", "price": 4299, "stock": 3 },
-    { "id": 3, "name": "Wood screws (100 pack)", "category": "Fasteners", "price": 129, "stock": 42 },
-    { "id": 4, "name": "Measuring tape 5m", "category": "Tools", "price": 249, "stock": 2 },
-    { "id": 5, "name": "Wall paint, white 4L", "category": "Paint", "price": 1199, "stock": 9 }
+    {
+      "id": 1,
+      "name": "Claw hammer",
+      "category": "Tools",
+      "price": 549,
+      "stock": 18
+    },
+    {
+      "id": 2,
+      "name": "Cordless drill",
+      "category": "Power tools",
+      "price": 4299,
+      "stock": 3
+    },
+    {
+      "id": 3,
+      "name": "Wood screws (100 pack)",
+      "category": "Fasteners",
+      "price": 129,
+      "stock": 42
+    },
+    {
+      "id": 4,
+      "name": "Measuring tape 5m",
+      "category": "Tools",
+      "price": 249,
+      "stock": 2
+    },
+    {
+      "id": 5,
+      "name": "Wall paint, white 4L",
+      "category": "Paint",
+      "price": 1199,
+      "stock": 9
+    },
+    {
+      "price": 100,
+      "stock": -5,
+      "name": "Test",
+      "id": 6
+    }
   ]
 }

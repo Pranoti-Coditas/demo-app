@@ -29,7 +29,7 @@ workspaces:
       env:
         PORT: "4001"
         DB_FILE: api.evidence-db.json
-      prepare: cp db.json api.evidence-db.json
+      prepare: node -e "require('fs').copyFileSync('db.json', 'api.evidence-db.json')"   # cross-platform (no cp on Windows cmd)
       samples:
         - { name: list-products, method: GET, path: /products, expect_status: 200 }
 
